@@ -1,6 +1,6 @@
 {
   "name": "ichinae-video",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "",
   "main": "dist/ichina-video.ssr.js",
   "browser": "dist/ichina-video.esm.js",
@@ -16,10 +16,6 @@
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wzc570738205/ichinae-video.git"
   },
   "author": "wangzhichao <570738205@qq.com>",
   "dependencies": {
