@@ -2,7 +2,7 @@
  * @Author: wangzhichiao<https://github.com/wzc570738205>
  * @Date: 2020-08-13 14:14:31
  * @LastEditors: wangzhichiao<https://github.com/wzc570738205>
- * @LastEditTime: 2020-08-13 15:08:04
+ * @LastEditTime: 2020-08-13 15:42:32
 -->
 
 # ichinae-video
@@ -69,7 +69,7 @@ data() {
 
 | 参数       | 释义             | 取值    | 默认值 | 是否必须 |
 | ---------- | ---------------- | ------- | ------ | -------- |
-| size       | 分屏数           | 1/4/8/9    |       | true    |
+| size       | 分屏数           | 1/4/6/8/9    |       | true    |
 | text       | 水印             | string  | ''     | false    |
 | disabledDb | 是否禁用双击事件 | Boolean | false  | false    |
 
