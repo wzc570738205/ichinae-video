@@ -1115,7 +1115,7 @@ var base64 = {
 };/*
  * @Date: 2020-07-02 15:03:04
  * @LastEditors: wangzhichiao<https://github.com/wzc570738205>
- * @LastEditTime: 2020-08-13 10:42:29
+ * @LastEditTime: 2020-08-21 15:29:18
  */
 var vmsService = {
   login: function login(ipcLinkInfo, data) {
@@ -1138,23 +1138,23 @@ var vmsService = {
       }
     });
   },
-  getRecordList: function getRecordList(ipcLinkInfo, data) {
+  getRecordList: function getRecordList(ip, ipcLinkInfo, data) {
     return axios({
-      url: "".concat(ipcLinkInfo.serverIP, ":").concat(ipcLinkInfo.serverPort, "/command?cmd=getrecordlist"),
+      url: "http://".concat(ip, ":").concat(ipcLinkInfo.serverPort, "/command?cmd=getrecordlist"),
       method: 'get',
       params: data,
       headers: {
-        'auth-token': getToken()
+        /*  'auth-token': getToken(), */
       }
     });
   },
-  setvideorate: function setvideorate(ipcLinkInfo, data) {
+  setvideorate: function setvideorate(ip, ipcLinkInfo, data) {
     return axios({
-      url: "".concat(ipcLinkInfo.serverIP, ":").concat(ipcLinkInfo.serverPort, "/command?cmd=setvideorate"),
+      url: "http://".concat(ip, ":").concat(ipcLinkInfo.serverPort, "/command?cmd=setvideorate"),
       method: 'get',
       params: data,
       headers: {
-        'auth-token': getToken()
+        /*  'auth-token': getToken(), */
       }
     });
   }
@@ -1187,7 +1187,8 @@ var script$1 = {
         disabledDate: function disabledDate(time) {
           return time.getTime() > Date.now() - 24 * 60 * 60 * 1000;
         }
-      }
+      },
+      ipcLinkInfo: {}
     };
   },
   computed: {},
@@ -1611,9 +1612,10 @@ var script$1 = {
                 _yield$vmsService$get = _context3.sent;
                 ipcLinkInfo = _yield$vmsService$get.ipcLinkInfo;
                 console.log(ipcLinkInfo);
+                _this7.ipcLinkInfo = ipcLinkInfo;
 
                 if (ipcLinkInfo) {
-                  _context3.next = 10;
+                  _context3.next = 11;
                   break;
                 }
 
@@ -1621,7 +1623,7 @@ var script$1 = {
 
                 return _context3.abrupt("return");
 
-              case 10:
+              case 11:
                 // eslint-disable-next-line require-atomic-updates
                 url = "http://".concat(ipcLinkInfo.serverIP, ":").concat(_this7.vmsOption.ipcLinkInfo.serverPort, "/live?devid=").concat(id, "&channel=0"); // 重复点击视频视觉提示
 
@@ -1630,7 +1632,7 @@ var script$1 = {
                 });
 
                 if (!(isplay > -1)) {
-                  _context3.next = 16;
+                  _context3.next = 17;
                   break;
                 }
 
@@ -1641,13 +1643,13 @@ var script$1 = {
                 }, 500);
                 return _context3.abrupt("return");
 
-              case 16:
+              case 17:
                 return _context3.abrupt("return", Promise.resolve({
                   url: url,
                   ipcLinkInfo: ipcLinkInfo
                 }));
 
-              case 17:
+              case 18:
               case "end":
                 return _context3.stop();
             }
@@ -1852,7 +1854,7 @@ var script$1 = {
 
       if (type) {
         this.timeKey = new Date().getTime();
-        vmsService.getRecordList(this.vmsOption.ipcLinkInfo, {
+        vmsService.getRecordList(this.ipcLinkInfo.serverIP, this.vmsOption.ipcLinkInfo, {
           devid: item.videoId,
           playtime: playtime
         }).then(function (res) {
@@ -1958,7 +1960,7 @@ var script$1 = {
       var _this11 = this;
 
       var video = document.getElementById(item.id);
-      vmsService.setvideorate(this.vmsOption.ipcLinkInfo, {
+      vmsService.setvideorate(this.ipcLinkInfo.serverIP, this.vmsOption.ipcLinkInfo, {
         devid: item.videoId,
         scale: speed,
         sid: item.sid
@@ -2329,7 +2331,7 @@ var __vue_staticRenderFns__$1 = [];
 
 var __vue_inject_styles__$1 = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-9dd6d588_0", {
+  inject("data-v-52cbc8b7_0", {
     source: ".videotemplate{user-select:none;height:100%;width:100%}.videotemplate .el-row{width:100%;height:100%;padding:0 5px!important;margin:0!important}.videotemplate .el-col{padding:0!important;height:100%}.videotemplate .fullScreen{position:fixed;top:0;left:0;z-index:9999;transition:all .5s}.videotemplate .videowrap{position:relative;transition:all .5s}.videotemplate .el-col-12,.videotemplate .el-col-6{height:50%}.videotemplate .el-col-8{height:33.3333%}.videotemplate .fullScreen,.videotemplate .videowrap{border:2px solid #000;height:100%;width:100%;background:#1e2427}.videotemplate .fullScreen .videoTitle,.videotemplate .videowrap .videoTitle{position:absolute;z-index:5;color:#fff;top:0;left:0}.videotemplate .fullScreen .water,.videotemplate .videowrap .water{user-select:none;position:absolute;color:#fff;opacity:.6;z-index:99;top:15%;left:10%;text-align:center;line-height:30px;font-size:30px;font-weight:600}.videotemplate .fullScreen .water3,.videotemplate .videowrap .water3{top:75%;left:70%}.videotemplate .fullScreen .water2,.videotemplate .videowrap .water2{top:45%;left:40%}.videotemplate .fullScreen video,.videotemplate .videowrap video{object-fit:fill}.videotemplate .fullScreen .control,.videotemplate .videowrap .control{display:flex;box-sizing:border-box;opacity:0;transition:opacity .5s;width:100%;height:40px;position:absolute;bottom:2px;left:2px}.videotemplate .fullScreen .control button,.videotemplate .videowrap .control button{background:0 0;border:none;padding:0}.videotemplate .fullScreen .control .play-speed,.videotemplate .videowrap .control .play-speed{width:130px;height:40px;border-radius:10px;background:rgba(0,0,0,.5);color:#fff;bottom:0}.videotemplate .fullScreen .control .play-speed:hover,.videotemplate .videowrap .control .play-speed:hover{color:#fff}.videotemplate .fullScreen .control .play-speed .speed,.videotemplate .videowrap .control .play-speed .speed{width:50px;height:100%;text-align:center;cursor:pointer;padding:0 5px}.videotemplate .fullScreen .control .play-speed .speed:hover,.videotemplate .videowrap .control .play-speed .speed:hover{color:#3075ff}.videotemplate .fullScreen .control .play-speed .speed.active,.videotemplate .videowrap .control .play-speed .speed.active{color:#3075ff}.videotemplate .fullScreen .control .el-date-editor,.videotemplate .videowrap .control .el-date-editor{height:40px!important;position:absolute;background:rgba(0,0,0,.5);border-radius:10px;right:5px;bottom:0;width:150px}.videotemplate .fullScreen .control .el-date-editor .el-input__inner,.videotemplate .videowrap .control .el-date-editor .el-input__inner{height:40px!important;background:rgba(0,0,0,.5);border:none}.videotemplate .fullScreen .control .el-date-editor .el-input__icon,.videotemplate .videowrap .control .el-date-editor .el-input__icon{line-height:40px}.videotemplate .fullScreen:hover .closrControl,.videotemplate .fullScreen:hover .control,.videotemplate .videowrap:hover .closrControl,.videotemplate .videowrap:hover .control{cursor:pointer;opacity:1;transition:opacity .5s}.videotemplate .tcl{position:absolute;opacity:0;color:red;top:10px;font-weight:600;left:10px;font-size:20px;animation:flash 1s infinite}@keyframes flash{0%,50%,to{opacity:1}25%,75%{opacity:0}}.videotemplate .closrControl{position:absolute;opacity:0;top:10px;right:10px;z-index:999999999}.videotemplate .closrControl button{background:0 0;border:none;padding:0}.videotemplate .error{position:absolute;width:100%;height:100%;background:rgba(0,0,0,.8);top:0;left:0;display:flex;align-items:center;justify-content:center;flex-direction:column}.videotemplate .error>span{padding:20px 0;font-size:20px;color:red}.videotemplate .timeline canvas{width:100%}.videotemplate .show{display:block}.videotemplate .hide{display:none}.videotemplate .animate__animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}.videotemplate .animate__shakeX{-webkit-animation-name:shakeX;animation-name:shakeX}@-webkit-keyframes shakeX{from,to{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}10%,30%,50%,70%,90%{-webkit-transform:translate3d(-10px,0,0);transform:translate3d(-10px,0,0)}20%,40%,60%,80%{-webkit-transform:translate3d(10px,0,0);transform:translate3d(10px,0,0)}}@keyframes shakeX{from,to{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}10%,30%,50%,70%,90%{-webkit-transform:translate3d(-10px,0,0);transform:translate3d(-10px,0,0)}20%,40%,60%,80%{-webkit-transform:translate3d(10px,0,0);transform:translate3d(10px,0,0)}}",
     map: undefined,
     media: undefined
@@ -2341,7 +2343,7 @@ var __vue_inject_styles__$1 = function __vue_inject_styles__(inject) {
 var __vue_scope_id__$1 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$1 = "data-v-9dd6d588";
+var __vue_module_identifier__$1 = "data-v-52cbc8b7";
 /* functional template */
 
 var __vue_is_functional_template__$1 = false;

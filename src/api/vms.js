@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-02 15:03:04
  * @LastEditors: wangzhichiao<https://github.com/wzc570738205>
- * @LastEditTime: 2020-08-13 10:42:29
+ * @LastEditTime: 2020-08-21 15:29:18
  */
 import base64 from '@/utils/base64'
 import { getToken } from '@/utils/vmsToken'
@@ -29,23 +29,23 @@ var vmsService = {
       },
     })
   },
-  getRecordList(ipcLinkInfo, data) {
+  getRecordList(ip,ipcLinkInfo, data) {
     return axios({
-      url: `${ipcLinkInfo.serverIP}:${ipcLinkInfo.serverPort}/command?cmd=getrecordlist`,
+      url: `http://${ip}:${ipcLinkInfo.serverPort}/command?cmd=getrecordlist`,
       method: 'get',
       params: data,
       headers: {
-        'auth-token': getToken(),
+       /*  'auth-token': getToken(), */
       },
     })
   },
-  setvideorate(ipcLinkInfo, data) {
+  setvideorate(ip,ipcLinkInfo, data) {
     return axios({
-      url: `${ipcLinkInfo.serverIP}:${ipcLinkInfo.serverPort}/command?cmd=setvideorate`,
+      url: `http://${ip}:${ipcLinkInfo.serverPort}/command?cmd=setvideorate`,
       method: 'get',
       params: data,
       headers: {
-        'auth-token': getToken(),
+       /*  'auth-token': getToken(), */
       },
     })
   },
