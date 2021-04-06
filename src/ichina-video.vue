@@ -2,7 +2,11 @@
  * @Author: wangzhichiao<https://github.com/wzc570738205>
  * @Date: 2020-07-08 09:48:06
  * @LastEditors: wangzhichiao<https://github.com/wzc570738205>
+<<<<<<< HEAD
  * @LastEditTime: 2020-08-20 10:26:32
+=======
+ * @LastEditTime: 2020-12-15 10:08:55
+>>>>>>> f141984677eca89a25f416de81d237e5564c2808
 -->
 <template>
   <div class="videotemplate">
