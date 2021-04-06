@@ -2,7 +2,7 @@
  * @Author: wangzhichiao<https://github.com/wzc570738205>
  * @Date: 2020-07-08 09:48:06
  * @LastEditors: wangzhichiao<https://github.com/wzc570738205>
- * @LastEditTime: 2020-08-13 15:42:41
+ * @LastEditTime: 2020-08-20 10:26:32
 -->
 <template>
   <div class="videotemplate">
@@ -177,7 +177,8 @@ export default {
         disabledDate(time) {
           return time.getTime() > Date.now() - 24 * 60 * 60 * 1000
         }
-      }
+      },
+      ipcLinkInfo:{}
     }
   },
   computed: {
@@ -464,6 +465,7 @@ export default {
         return res.data
       })
       console.log(ipcLinkInfo)
+      this.ipcLinkInfo = ipcLinkInfo;
       if (!ipcLinkInfo) {
         this.$message.error('获取视频地址失败')
         return
@@ -684,7 +686,7 @@ export default {
       // 选择日期触发
       if (type) {
         this.timeKey = new Date().getTime()
-        vmsService.getRecordList(this.vmsOption.ipcLinkInfo,{
+        vmsService.getRecordList(this.ipcLinkInfo.serverIP,this.vmsOption.ipcLinkInfo,{
           devid: item.videoId,
           playtime: playtime
         }).then(res => {
@@ -774,7 +776,7 @@ export default {
     },
     changeSpeed(item, index, speed) {
       const video = document.getElementById(item.id)
-      vmsService.setvideorate(this.vmsOption.ipcLinkInfo,{
+      vmsService.setvideorate(this.ipcLinkInfo.serverIP,this.vmsOption.ipcLinkInfo,{
         devid: item.videoId,
         scale: speed,
         sid: item.sid
